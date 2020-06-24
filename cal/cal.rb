@@ -1,9 +1,11 @@
 require './LeapYear'
 class Cal
-    def initialize(y,m)
+    def initialize(y,m = 0)
         @y = y
         @m = m 
     end
+
+
     def wantDay
         leap = Leap.new(@y) 
         # 日数指定
@@ -23,6 +25,16 @@ class Cal
         end
         return 0
     end
+
+    def createCalYear
+        cal = []
+        for i in 1..12 do
+           @m = i
+           cal.push(createCal)
+        end
+        return cal
+    end
+            
     def createCal
         @d = wantDay
         if @m <= 2
@@ -32,15 +44,15 @@ class Cal
         end
         h = h % 7
         row = ((@d + h + 7 - 1) / 7).to_i
-        @cal = Array.new(row).map{Array.new(7," ")}
+        cal = Array.new(row).map{Array.new(7," ")}
 
         cnt = h
             
         for a in 1..@d do
-            @cal[(cnt / 7).to_i][cnt % 7] = a.to_s
+            cal[(cnt / 7).to_i][cnt % 7] = a.to_s
             cnt = cnt + 1
         end
-        return @cal
+        return cal
     end
 end
 

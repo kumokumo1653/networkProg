@@ -5,6 +5,7 @@ require 'date'
 set :environment, :production
 
 date = Date.today
+
 get '/:year/:month' do
     @y = params[:year]
     @m = params[:month]
@@ -22,5 +23,16 @@ get '/:year/:month' do
     end
     ca = Cal.new(@y.to_i,@m.to_i)
     @cal = ca.createCal
-    erb :index
+    erb :calmonth
 end
+
+get'/:year' do
+    @y = params[:year]
+    @nowFlag = false
+    ca = Cal.new(@y.to_i)
+    @cal = ca.createCalYear
+    @m = date.month
+    @d = date.day
+    erb :calyear
+end
+

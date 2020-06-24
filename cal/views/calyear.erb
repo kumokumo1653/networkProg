@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8" />
+            <title>Cal</title>
+            <link rel="stylesheet" type="text/css" href="/css/cal.css">
+        </head>
+        <body>
+            <% month = 0 %>
+            <% @cal.each do |y| %>
+                <% month += 1 %>
+                <% if month  == @m
+                   @nowFalg = true
+                end %>
+
+                <table>
+                    <caption><%= "#{@y}年#{month }月"%></caption>
+                    <tr>
+                        <th><div class="Sun">Sun</div></th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th><div class="Sat">Sat</div></th>
+                    </tr>
+                    <% y.each do |a| %>
+                        <tr>
+                            <% for i in 0..6 do %>
+                                <% if i == 0 %>
+                                    <% if @nowFlag && a[i] == @d.to_s %>
+                                        <td class="today"><div class="Sun"><%= a[i] %></div></td>
+                                    <% else %>
+                                        <td><div class="Sun"><%= a[i] %></div></td>
+                                    <% end %>
+                                <% elsif i == 6 %>
+                                    <% if @nowFlag && a[i] == @d.to_s%>
+                                        <td class="today"><div class="Sat"><%= a[i] %></div></td>
+                                    <% else %>
+                                        <td><div class="Sat"><%= a[i] %></div></td>
+                                    <% end %>
+                                <% else %>
+                                    <% if @nowFlag && a[i] == @d.to_s%>
+                                        <td class="today"><%= a[i] %></td>
+                                    <% else %>
+                                        <td><%= a[i] %></td>
+                                    <% end %>
+                                <% end %>
+                            <% end %>
+                        </tr>
+                    <% end %>
+                    <% if @nowFlag
+                        @nowFlag = false
+                    end %>
+                </table>
+            <% end %> 
+        </body>
+    </html>
+
