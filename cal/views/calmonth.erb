@@ -6,6 +6,12 @@
             <link rel="stylesheet" type="text/css" href="/css/cal.css">
         </head>
         <body>
+            <% lasty,lastm = @ca.lastMonth %>
+            <a href="http://127.0.0.1:9998/<%= lasty%>/<%=lastm%>">先月</a>
+            <% nowy,nowm = @ca.nowMonth %>
+            <a href="http://127.0.0.1:9998/<%= nowy%>/<%=nowm%>">今月</a>
+            <% nexty,nextm = @ca.nextMonth %>
+            <a href="http://127.0.0.1:9998/<%=nexty%>/<%=nextm%>">来月</a>
             <table>
                 <caption><%= "#{@y}年#{@m}月"%></caption>
                 <tr>

@@ -21,8 +21,8 @@ get '/:year/:month' do
     if @nowFlag 
         @d = date.day
     end
-    ca = Cal.new(@y.to_i,@m.to_i)
-    @cal = ca.createCal
+    @ca = Cal.new(@y.to_i,@m.to_i)
+    @cal = @ca.createCal
     erb :calmonth
 end
 

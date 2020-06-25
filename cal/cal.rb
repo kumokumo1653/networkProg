@@ -1,4 +1,5 @@
 require './LeapYear'
+require 'date'
 class Cal
     def initialize(y,m = 0)
         @y = y
@@ -53,6 +54,26 @@ class Cal
             cnt = cnt + 1
         end
         return cal
+    end
+    
+    def lastMonth
+        if(@m == 1)
+            return @y - 1,12
+        else
+            return @y,@m - 1
+        end
+    end
+
+    def nextMonth
+        if(@m == 12)
+            return @y + 1,1
+        else 
+            return @y, @m + 1
+        end
+    end
+    def nowMonth
+        date = Date.today
+        return date.year,date.month
     end
 end
 
