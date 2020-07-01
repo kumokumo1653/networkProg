@@ -16,35 +16,17 @@
                 <caption><%= "#{@y}年#{@m}月"%></caption>
                 <tr>
                     <th><div class="Sun">Sun</div></th>
-                    <th>Mon</th>
-                    <th>Tue</th>
-                    <th>Wed</th>
-                    <th>Thu</th>
-                    <th>Fri</th>
+                    <th><div class="Mon">Mon</div></th>
+                    <th><div class="Tue">Tue</div></th>
+                    <th><div class="Wed">Wed</div></th>
+                    <th><div class="Thu">Thu</div></th>
+                    <th><div class="Fri">Fri</div></th>
                     <th><div class="Sat">Sat</div></th>
                 </tr>
-                <% @cal.each do |a| %>
+                <% for i in 0..@cal.size - 1 do %>
                     <tr>
-                        <% for i in 0..6 do %>
-                            <% if i == 0 %>
-                                <% if @nowFlag && a[i] == @d.to_s %>
-                                    <td class="today"><div class="Sun"><%= a[i] %></div></td>
-                                <% else %>
-                                    <td><div class="Sun"><%= a[i] %></div></td>
-                                <% end %>
-                            <% elsif i == 6 %>
-                                <% if @nowFlag && a[i] == @d.to_s%>
-                                    <td class="today"><div class="Sat"><%= a[i] %></div></td>
-                                <% else %>
-                                    <td><div class="Sat"><%= a[i] %></div></td>
-                                <% end %>
-                            <% else %>
-                                <% if @nowFlag && a[i] == @d.to_s%>
-                                    <td class="today"><%= a[i] %></td>
-                                <% else %>
-                                    <td><%= a[i] %></td>
-                                <% end %>
-                            <% end %>
+                        <% for j in 0..6 do %>
+                            <td class="<%= @info[i][j] %>"><%= @cal[i][j] %></td>
                         <% end %>
                     </tr>
                 <% end %>

@@ -22,8 +22,8 @@ startyear integer,
 endyear integer
 );
 
-insert into decideweeks values (1, '母の日', 5, 0, 1, 'event', -1, -1);
-insert into decideweeks values (2, '父の日', 6, 0, 2, 'event', -1, -1);
+insert into decideweeks values (1, '母の日', 5, 0, 2, 'event', -1, -1);
+insert into decideweeks values (2, '父の日', 6, 0, 3, 'event', -1, -1);
 
 
 create table events (

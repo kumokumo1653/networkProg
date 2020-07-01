@@ -57,7 +57,8 @@ class EventUpdater
                 e.id = cnt
                 e.name = a.name
                 e.month = a.month
-                e.day = cal[a.month - 1][a.number][a.week].to_i
+                calendar.setMonth(a.month)
+                e.day = calendar.searchNumOfWeek(a.week,a.number)
                 e.category = a.category
                 e.save
                 cnt = cnt + 1
@@ -68,9 +69,3 @@ class EventUpdater
                 
 end
     
-temp = EventUpdater.new(2020)
-temp.update
-e = Event.all
-e.each do |a|
-    puts a.name
-end

@@ -20,10 +20,14 @@ get '/:year/:month' do
     end
     if @nowFlag 
         @d = date.day
+    else
+        @d = 0
     end
     $calendar.setYear(@y.to_i)
     $calendar.setMonth(@m.to_i)
     @cal = $calendar.createCal
+    @info = $calendar.createInfo(@cal,@d)
+    pp @info
     erb :calmonth
 end
 

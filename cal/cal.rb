@@ -4,7 +4,6 @@ class Cal
     def initialize(y,m = 0)
         @y = y
         @m = m 
-        puts "asdf"
     end
 
     def setYear(y)
@@ -62,6 +61,30 @@ class Cal
         end
         return cal
     end
+
+    def createInfo(c,today)
+        cal = Marshal.load(Marshal.dump(c))
+        for i in 0..c.size - 1 do
+            for j in 0..6 do
+                cal[i][j] = case j
+                            when 0 then "Sun"
+                            when 1 then "Mon"
+                            when 2 then "Tue"
+                            when 3 then "Wed"
+                            when 4 then "Thu"
+                            when 5 then "Fri"
+                            when 6 then "Sat"
+                            end
+                if(today != 0)
+                    if(c[i][j].to_i == today)
+                        cal[i][j] += " today"
+                    end
+                end
+            end
+        end
+        return cal
+    end
+
     
     def lastMonth
         if(@m == 1)
@@ -81,6 +104,20 @@ class Cal
     def nowMonth
         date = Date.today
         return date.year,date.month
+    end
+
+    def searchNumOfWeek(week, num)
+        cnt = 0
+        cal = createCal
+        for i in 0..cal.size do
+            if(cal[i][week] != " ")
+                cnt += 1
+                if(cnt == num)
+                    return cal[i][week]
+                end
+            end
+        end
+        return -1
     end
 end
 
