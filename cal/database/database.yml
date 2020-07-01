@@ -1,0 +1,6 @@
+eventdays:
+    adapter: sqlite3
+    database: ./database/eventdays.db
+decideweeks:
+    adapter: sqlite3
+    database: ./database/decideweeks.db

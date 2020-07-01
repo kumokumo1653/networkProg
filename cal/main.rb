@@ -4,9 +4,9 @@ require 'date'
 
 set :environment, :production
 
-date = Date.today
-
+$calendar = Cal.new(0,0)
 get '/:year/:month' do
+    date = Date.today
     @y = params[:year]
     @m = params[:month]
     if date.year == @y.to_i
@@ -21,16 +21,24 @@ get '/:year/:month' do
     if @nowFlag 
         @d = date.day
     end
-    @ca = Cal.new(@y.to_i,@m.to_i)
-    @cal = @ca.createCal
+    $calendar.setYear(@y.to_i)
+    $calendar.setMonth(@m.to_i)
+    @cal = $calendar.createCal
     erb :calmonth
 end
 
 get'/:year' do
+    date = Date.today
     @y = params[:year]
     @nowFlag = false
-    ca = Cal.new(@y.to_i)
-    @cal = ca.createCalYear
+    $calendar.setYear(@y.to_i)
+    @cal = $calendar.createCalYear
+    if(@y.to_i == date.year)
+        @yearFalg = true
+    else 
+        @yearFalg = false
+    end
+        
     @m = date.month
     @d = date.day
     erb :calyear

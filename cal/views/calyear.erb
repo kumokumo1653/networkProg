@@ -9,8 +9,8 @@
             <% month = 0 %>
             <% @cal.each do |y| %>
                 <% month += 1 %>
-                <% if month  == @m
-                   @nowFalg = true
+                <% if month  == @m && @yearFalg
+                   @nowFlag = true
                 end %>
 
                 <table>

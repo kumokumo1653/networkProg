@@ -1,0 +1,36 @@
+create table eventdays (
+id integer primary key,
+name text,
+month integer,
+day integer,
+category text,
+startyear integer,
+endyear integer
+);
+
+insert into eventdays values (1,'元旦',1,1,'holiday',-1,-1);
+insert into eventdays values (2,'建国記念日',2,11,'holiday',-1,-1);
+
+create table decideweeks (
+id integer primary key,
+name text,
+month integer,
+week integer,
+number integer,
+category text,
+startyear integer,
+endyear integer
+);
+
+insert into decideweeks values (1, '母の日', 5, 0, 1, 'event', -1, -1);
+insert into decideweeks values (2, '父の日', 6, 0, 2, 'event', -1, -1);
+
+
+create table events (
+id integer primary key,
+name text,
+month integer,
+day integer,
+category text
+);
+

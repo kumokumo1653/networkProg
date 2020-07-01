@@ -1,13 +1,76 @@
 require 'active_record'
+require './cal'
 
-ActiveRecord::Base.configurations = YAML.load_file('datebase.yml')
-ActiveRecord::Base.establish_connection :development
+ActiveRecord::Base.configurations = YAML.load_file('./database/database.yml')
 
-class Eventday < ActiveRecord::Base
+class Eventbase < ActiveRecord::Base
+    ActiveRecord::Base.establish_connection :eventdays
+    self.abstract_class = true
+end
+
+class Eventday < Eventbase
     self.table_name = 'eventdays'
 end
 
-a = Eventday.find(1)
+class Decideweek < Eventbase
+    self.table_name = 'decideweeks'
+end
 
-puts a.name
+class Event < Eventbase
+    self.table_name = 'events'
+end
 
+class EventUpdater
+    def initialize(y)
+        @y = y
+    end
+
+    def setYear(y)
+        @y = y
+    end
+
+    def update
+        @day = Eventday.all
+        @week = Decideweek.all
+        calendar = Cal.new(@y)
+        cal = calendar.createCalYear 
+        cnt = 1
+        event = Event.all
+        event.each do |a|
+            a.destroy
+        end
+        @day.each do |a|
+            if(a.startyear <= @y && (a.endyear >= @y || a.endyear == -1))
+                e = Event.new
+                e.id = cnt
+                e.name = a.name
+                e.month = a.month
+                e.day = a.day
+                e.category = a.category
+                e.save
+                cnt = cnt + 1
+            end
+        end
+        @week.each do |a|
+            if(a.startyear <= @y && (a.endyear >= @y || a.endyear == -1))
+                e = Event.new
+                e.id = cnt
+                e.name = a.name
+                e.month = a.month
+                e.day = cal[a.month - 1][a.number][a.week].to_i
+                e.category = a.category
+                e.save
+                cnt = cnt + 1
+            end
+        end
+    end
+        
+                
+end
+    
+temp = EventUpdater.new(2020)
+temp.update
+e = Event.all
+e.each do |a|
+    puts a.name
+end

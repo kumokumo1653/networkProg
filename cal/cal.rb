@@ -4,8 +4,15 @@ class Cal
     def initialize(y,m = 0)
         @y = y
         @m = m 
+        puts "asdf"
     end
 
+    def setYear(y)
+        @y = y
+    end
+    def setMonth(m)
+        @m = m
+    end
 
     def wantDay
         leap = Leap.new(@y) 
