@@ -1,4 +1,5 @@
 require './LeapYear'
+require './addEvent'
 require 'date'
 class Cal
     def initialize(y,m = 0)
@@ -63,7 +64,17 @@ class Cal
     end
 
     def createInfo(c,today)
+        transFalg = false;
         cal = Marshal.load(Marshal.dump(c))
+        updater = EventUpdater.new(@y)
+        info = updater.update
+        events = []
+        info.each do |a|
+            if(a.month == @m)
+                events.push(a)
+            end
+        end
+        
         for i in 0..c.size - 1 do
             for j in 0..6 do
                 cal[i][j] = case j
@@ -75,9 +86,26 @@ class Cal
                             when 5 then "Fri"
                             when 6 then "Sat"
                             end
+                #現在日の判定
                 if(today != 0)
                     if(c[i][j].to_i == today)
                         cal[i][j] += " today"
+                    end
+                end
+                #振替判定
+                if transFalg
+                    transFalg = false;
+                    cal[i][j] += " transfer"
+                end
+                #イベント追加
+                events.each do |a|
+                    if(a.day == c[i][j].to_i)
+                        if(cal[i][j][0,3] == "Sun" && a.category == "holiday")
+                            transFalg = true;
+                            cal[i][j] += " "+a.category
+                        else
+                            cal[i][j] += " "+a.category
+                        end
                     end
                 end
             end

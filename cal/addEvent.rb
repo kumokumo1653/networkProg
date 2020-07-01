@@ -64,8 +64,10 @@ class EventUpdater
                 cnt = cnt + 1
             end
         end
+        return Event.all
     end
         
                 
 end
     
+

@@ -19,6 +19,18 @@ table th {
 .Sat{
     color: blue;
 }
+.Mon, .Tue, .Wed, .Thu, .Fri{
+    color: black;
+}
+.holiday{
+    background-color: aqua;
+}
+.event{
+    background-color: lawngreen;
+}
+.transfer{
+    background-color: deepskyblue;
+
 .today{
-    background-color: #FFB000;
+    background-color: darkorange;
 }
