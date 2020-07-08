@@ -6,52 +6,27 @@
             <link rel="stylesheet" type="text/css" href="/css/cal.css">
         </head>
         <body>
-            <% month = 0 %>
-            <% @cal.each do |y| %>
-                <% month += 1 %>
-                <% if month  == @m && @yearFalg
-                   @nowFlag = true
-                end %>
-
+            <a href="http://127.0.0.1:9998/<%=@y.to_i - 1%>">去年</a>
+            <a href="http://127.0.0.1:9998/<%=@y.to_i + 1%>">来年</a>
+            <% for m in 0..11 do %>
                 <table>
-                    <caption><%= "#{@y}年#{month }月"%></caption>
+                    <caption><%= "#{@y}年#{m + 1}月"%></caption>
                     <tr>
                         <th><div class="Sun">Sun</div></th>
-                        <th>Mon</th>
-                        <th>Tue</th>
-                        <th>Wed</th>
-                        <th>Thu</th>
-                        <th>Fri</th>
+                        <th><div class="Mon">Mon</div></th>
+                        <th><div class="Tue">Tue</div></th>
+                        <th><div class="Wed">Wed</div></th>
+                        <th><div class="Thu">Thu</div></th>
+                        <th><div class="Fri">Fri</div></th>
                         <th><div class="Sat">Sat</div></th>
                     </tr>
-                    <% y.each do |a| %>
+                    <% for i in 0..@cal[m].size - 1 do %>
                         <tr>
-                            <% for i in 0..6 do %>
-                                <% if i == 0 %>
-                                    <% if @nowFlag && a[i] == @d.to_s %>
-                                        <td class="today"><div class="Sun"><%= a[i] %></div></td>
-                                    <% else %>
-                                        <td><div class="Sun"><%= a[i] %></div></td>
-                                    <% end %>
-                                <% elsif i == 6 %>
-                                    <% if @nowFlag && a[i] == @d.to_s%>
-                                        <td class="today"><div class="Sat"><%= a[i] %></div></td>
-                                    <% else %>
-                                        <td><div class="Sat"><%= a[i] %></div></td>
-                                    <% end %>
-                                <% else %>
-                                    <% if @nowFlag && a[i] == @d.to_s%>
-                                        <td class="today"><%= a[i] %></td>
-                                    <% else %>
-                                        <td><%= a[i] %></td>
-                                    <% end %>
-                                <% end %>
+                            <% for j in 0..6 do %>
+                                <td class="<%= @info[m][i][j] %>" title="<%= @title[m][i][j]%>"><%= @cal[m][i][j] %></td>
                             <% end %>
                         </tr>
                     <% end %>
-                    <% if @nowFlag
-                        @nowFlag = false
-                    end %>
                 </table>
             <% end %> 
         </body>

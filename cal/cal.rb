@@ -42,7 +42,8 @@ class Cal
         end
         return cal
     end
-            
+           
+        
     def createCal
         @d = wantDay
         if @m <= 2
@@ -63,11 +64,14 @@ class Cal
         return cal
     end
 
-    def createInfo(c,today)
+    def createInfo(c,today ,info = nil)
         transFalg = false;
         cal = Marshal.load(Marshal.dump(c))
-        updater = EventUpdater.new(@y)
-        info = updater.update
+        title = Marshal.load(Marshal.dump(c))
+        if(info == nil)
+            updater = EventUpdater.new(@y)
+            info = updater.update
+        end
         events = []
         info.each do |a|
             if(a.month == @m)
@@ -86,16 +90,21 @@ class Cal
                             when 5 then "Fri"
                             when 6 then "Sat"
                             end
+                if(c[i][j] != " ")
+                    title[i][j] = "なにもない日"
+                end
                 #現在日の判定
                 if(today != 0)
                     if(c[i][j].to_i == today)
                         cal[i][j] += " today"
+                        title[i][j] = "今日"
                     end
                 end
                 #振替判定
                 if transFalg
                     transFalg = false;
                     cal[i][j] += " transfer"
+                    title[i][j] = "振替休日"
                 end
                 #イベント追加
                 events.each do |a|
@@ -106,13 +115,32 @@ class Cal
                         else
                             cal[i][j] += " "+a.category
                         end
+                        title[i][j] = a.name
                     end
                 end
             end
         end
-        return cal
+        return cal,title
     end
 
+    def createInfoYear(c,tomonth,today)
+        title = []
+        cal = []
+        updater = EventUpdater.new(@y)
+        info = updater.update
+        for i in 0..11 do
+            @m = i + 1
+            if(i+1 == tomonth)
+                i,t = createInfo(c[i],today,info)
+            else
+                i,t = createInfo(c[i],0,info)
+            end
+            title.push(t)
+            cal.push(i)
+        end
+        pp cal
+        return cal,title
+    end
     
     def lastMonth
         if(@m == 1)

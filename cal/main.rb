@@ -26,8 +26,7 @@ get '/:year/:month' do
     $calendar.setYear(@y.to_i)
     $calendar.setMonth(@m.to_i)
     @cal = $calendar.createCal
-    @info = $calendar.createInfo(@cal,@d)
-    pp @info
+    @info,@title = $calendar.createInfo(@cal,@d)
     erb :calmonth
 end
 
@@ -38,13 +37,10 @@ get'/:year' do
     $calendar.setYear(@y.to_i)
     @cal = $calendar.createCalYear
     if(@y.to_i == date.year)
-        @yearFalg = true
+        @info,@title = $calendar.createInfoYear(@cal,date.month,date.day)
     else 
-        @yearFalg = false
+        @info,@title = $calendar.createInfoYear(@cal,0,0)
     end
-        
-    @m = date.month
-    @d = date.day
     erb :calyear
 end
 

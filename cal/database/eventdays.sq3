@@ -10,6 +10,7 @@ endyear integer
 
 insert into eventdays values (1,'元旦',1,1,'holiday',-1,-1);
 insert into eventdays values (2,'建国記念日',2,11,'holiday',-1,-1);
+insert into eventdays values (3,'七夕',7,7,'event',-1,-1);
 
 create table decideweeks (
 id integer primary key,
