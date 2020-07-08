@@ -100,12 +100,6 @@ class Cal
                         title[i][j] = "今日"
                     end
                 end
-                #振替判定
-                if transFalg
-                    transFalg = false;
-                    cal[i][j] += " transfer"
-                    title[i][j] = "振替休日"
-                end
                 #イベント追加
                 events.each do |a|
                     if(a.day == c[i][j].to_i)
@@ -117,6 +111,12 @@ class Cal
                         end
                         title[i][j] = a.name
                     end
+                end
+                #振替判定
+                if transFalg && title[i][j] == "なにもない日"
+                    transFalg = false;
+                    cal[i][j] += " transfer"
+                    title[i][j] = "振替休日"
                 end
             end
         end
@@ -138,7 +138,6 @@ class Cal
             title.push(t)
             cal.push(i)
         end
-        pp cal
         return cal,title
     end
     

@@ -34,3 +34,14 @@ table th {
 .today{
     background-color: darkorange;
 }
+
+/*-----table position----*/
+.container{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.item{
+	margin: 30px;
+}
+	

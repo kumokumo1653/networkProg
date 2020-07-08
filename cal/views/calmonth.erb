@@ -14,26 +14,27 @@
             <a href="http://127.0.0.1:9998/<%=nexty%>/<%=nextm%>">来月</a>
             <a href="http://127.0.0.1:9998/<%=@y.to_i - 1%>/<%=@m%>">去年</a>
             <a href="http://127.0.0.1:9998/<%=@y.to_i + 1%>/<%=@m%>">来年</a>
-            <table>
-                <caption><%= "#{@y}年#{@m}月"%></caption>
-                <tr>
-                    <th><div class="Sun">Sun</div></th>
-                    <th><div class="Mon">Mon</div></th>
-                    <th><div class="Tue">Tue</div></th>
-                    <th><div class="Wed">Wed</div></th>
-                    <th><div class="Thu">Thu</div></th>
-                    <th><div class="Fri">Fri</div></th>
-                    <th><div class="Sat">Sat</div></th>
-                </tr>
-                <% for i in 0..@cal.size - 1 do %>
-                    <tr>
-                        <% for j in 0..6 do %>
-                            <td class="<%= @info[i][j] %>" title="<%= @title[i][j] %>"><%= @cal[i][j] %></td>
-                        <% end %>
-                    </tr>
-                <% end %>
-            </table>
-                
+			<div class-"cal">
+				<table>
+					<caption><%= "#{@y}年#{@m}月"%></caption>
+					<tr>
+						<th><div class="Sun">Sun</div></th>
+						<th><div class="Mon">Mon</div></th>
+						<th><div class="Tue">Tue</div></th>
+						<th><div class="Wed">Wed</div></th>
+						<th><div class="Thu">Thu</div></th>
+						<th><div class="Fri">Fri</div></th>
+						<th><div class="Sat">Sat</div></th>
+					</tr>
+					<% for i in 0..@cal.size - 1 do %>
+						<tr>
+							<% for j in 0..6 do %>
+								<td class="<%= @info[i][j] %>" title="<%= @title[i][j] %>"><%= @cal[i][j] %></td>
+							<% end %>
+						</tr>
+					<% end %>
+				</table>
+		   </div> 
         </body>
     </html>
 
