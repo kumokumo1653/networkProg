@@ -7,13 +7,14 @@
         </head>
         <body>
             <% lasty,lastm = $calendar.lastMonth %>
-            <a href="http://127.0.0.1:9998/<%= lasty%>/<%=lastm%>">先月</a>
+            <a href="http://127.0.0.1:9998/<%= lasty%>/<%=lastm%>"><先月</a>
             <% nowy,nowm = $calendar.nowMonth %>
             <a href="http://127.0.0.1:9998/<%= nowy%>/<%=nowm%>">今月</a>
             <% nexty,nextm = $calendar.nextMonth %>
-            <a href="http://127.0.0.1:9998/<%=nexty%>/<%=nextm%>">来月</a>
-            <a href="http://127.0.0.1:9998/<%=@y.to_i - 1%>/<%=@m%>">去年</a>
-            <a href="http://127.0.0.1:9998/<%=@y.to_i + 1%>/<%=@m%>">来年</a>
+            <a href="http://127.0.0.1:9998/<%=nexty%>/<%=nextm%>">来月></a>
+            <br>
+            <a href="http://127.0.0.1:9998/<%=@y.to_i - 1%>/<%=@m%>"><去年</a>
+            <a href="http://127.0.0.1:9998/<%=@y.to_i + 1%>/<%=@m%>">来年></a>
 			<div class-"cal">
 				<table>
 					<caption><%= "#{@y}年#{@m}月"%></caption>

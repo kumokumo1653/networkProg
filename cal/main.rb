@@ -5,6 +5,18 @@ require 'date'
 set :environment, :production
 
 $calendar = Cal.new(0,0)
+get '/' do
+    date = Date.today
+    @y = date.year
+    @m = date.month
+    @d = date.day
+    $calendar.setYear(@y)
+    $calendar.setMonth(@m)
+    @cal = $calendar.createCal
+    @info,@title = $calendar.createInfo(@cal,@d)
+    erb :calmonth
+end
+
 get '/:year/:month' do
     date = Date.today
     @y = params[:year]
