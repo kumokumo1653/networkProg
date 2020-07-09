@@ -21,7 +21,7 @@ get '/:year/:month' do
     date = Date.today
     @y = params[:year]
     @m = params[:month]
-    if @y.to_i < 1 || (@m.to_i < 1 && @m.to_i > 12) 
+    if @y.to_i < 1 || (@m.to_i < 1 || @m.to_i > 12) 
         erb :error
     else
         if date.year == @y.to_i
