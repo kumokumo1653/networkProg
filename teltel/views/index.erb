@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <titile>TelTel</title>
+    </head>
+    <body>
+        <table border>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone Number</th>
+            </tr>
+            <% @s.each do |a| %>
+            <tr>
+                <td><%= a.id %></td>
+                <td><%= a.name %></td>
+                <td><%= a.phonenum %></td>
+            </tr>
+            <% end %> 
+        </table>
+    </body>
+</html>
+

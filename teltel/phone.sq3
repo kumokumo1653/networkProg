@@ -1,0 +1,11 @@
+create table students (
+id char(10) primary key,
+name varchar(40),
+phonenum varcchar(40)
+);
+
+insert into students values ('10001', 'Kuroda Kanbei', '123-4567');
+insert into students values ('10002', 'Tairano Kiyomori', '135-4486');
+insert into students values ('10003', 'Sakamoto Ryoma', '423-4567');
+insert into students values ('10004', 'Naoe Kanetugu', '623-4699');
+insert into students values ('10005', 'Yamamoto Kansuke', '413-4267');
