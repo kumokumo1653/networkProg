@@ -16,8 +16,22 @@
                 <td><%= a.id %></td>
                 <td><%= a.name %></td>
                 <td><%= a.phonenum %></td>
+                <form method="post" action="del">
+                    <td><input type="submit" value="Delete"></td>
+                    <input type="hidden" name="id" value="<%= a.id %>">
+                    <input type="hidden" name="_method" value="delete">
+                </form>
             </tr>
-            <% end %> 
+        <% end %> 
+            
+            <form method="post" action="new">
+                <tr>
+                    <td><input type="text" name="id"></td>
+                    <td><input type="text" name="name"></td>
+                    <td><input type="text" name="tel"></td>
+                    <td><input type="submit" value="Go"></td>
+                </tr>
+            </form>
         </table>
     </body>
 </html>
